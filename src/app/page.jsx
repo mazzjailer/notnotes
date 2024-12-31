@@ -3,36 +3,65 @@ import Link from 'next/link'
 import './globals.css'
 import { PrismaClient } from '@prisma/client'
 import { sort } from 'fast-sort'
+import Search from './search.jsx'
 
 export default async function App( {searchParams} ) {
-
   const prisma = new PrismaClient()
-  const notes = await prisma.note.findMany()
   const { sortOrder = '' } = await searchParams;
-  const sortedNotes = sort(notes).desc(sortOrder === 'title' ? note => note.title : note => note.date)
-
+  const { search = '' } = await searchParams;
+  let notes = await prisma.note.findMany({
+    where: {
+      title: {
+        contains: search,
+      },
+    },
+  })
+  if (sortOrder === 'date') {
+    const sortedNotes = await prisma.note.findMany({
+      where: {
+        title: {
+          contains: search,
+        },
+      },
+      orderBy: {
+        date: 'desc',
+      },
+    });
+    notes = sortedNotes;
+  }
+  else {
+    const sortedNotes = await prisma.note.findMany({
+      where: {
+        title: {
+          contains: search,
+        },
+      },
+      orderBy: {
+        title: 'desc',
+      },
+    })
+    notes = sortedNotes;
+  }
   return (
     <>
-      <div className='p-6 pt-16 md:p-36 md:pt-20'>
-      <h1 className='text-5xl text-black font-bold mb-6'>notNotes</h1>
+      <div className='flex flex-col p-6 pt-16 md:p-36 md:pt-20'>
+        <Link href='/' className='text-5xl text-black font-bold mb-6'>notNotes</Link>
         <div className=''>
-          <form>
-            <input type='text' placeholder="Search" rows="1" className='shadow-inner resize-none h-12 w-full outline-none bg-gray-100 p-4 rounded-xl mb-10'></input>
-          </form>
+          <Search />
         </div>
         <table className='w-full'>
           <thead className='text-left text-gray-600 text-lg'>
             <tr>
               <th>
-                <Link className='p-5' href="/?sortOrder=title">Title</Link>
+                <Link className='p-5' href={"/?search=" + search + "&sortOrder=title"}>Title</Link>
               </th>
               <th>
-                <Link className='p-5' href="/?sortOrder=date">Date</Link>
+                <Link className='p-5' href={"/?search=" + search + "&sortOrder=date"}>Date</Link>
               </th>
             </tr>
           </thead>
           <tbody>
-              {sortedNotes.map((note) => (
+              {notes.map((note) => (
                 <Card push={note.id} key={note.id} id={note.id} title={note.title} abstract={note.content.substring(0, 50) + "..."} date={note.date.toLocaleString()} />
               ))}
           </tbody>
