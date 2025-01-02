@@ -8,6 +8,12 @@ export async function GET( NextRequest ) {
 }
 
 export async function POST( NextRequest ) {
-  const body = await NextRequest.json()
-  return NextResponse.json(body)
+  const { title, content } = await NextRequest.json()
+  const note = await prisma.note.create({
+    data: {
+      title: title,
+      content: content,
+    },
+  })
+  return NextResponse.json(note);
 }

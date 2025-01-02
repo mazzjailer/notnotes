@@ -2,31 +2,27 @@ import React from 'react'
 import TextArea from '../components/textArea.jsx'
 import Header from '../components/header.jsx'
 import { redirect } from 'next/navigation'
-import { PrismaClient } from '@prisma/client'
 
 async function page() {
   async function addNote(formData) {
     'use server'
 
-    const prisma = new PrismaClient();
     const rawFormData = {
       title: formData.get('title'),
       content: formData.get('content'),
     }
 
-    const newNote = await prisma.note.create({
-      data: {
-        title: rawFormData.title,
-        content: rawFormData.content,
+    const note = await fetch(process.env.NEXTAPP_URL + '/api/notes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify(rawFormData),
     })
 
-    redirect(`/notes/${newNote.id}`)
-    
-  }
-  const handleClick = () => {
-    alert('clicked');
+    const { id } = await note.json();
 
+    redirect(`/notes/${id}`)
   }
 
   return (

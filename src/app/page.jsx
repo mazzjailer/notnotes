@@ -1,52 +1,34 @@
 import Card from './card'
 import Link from 'next/link'
 import './globals.css'
-import { PrismaClient } from '@prisma/client'
 import { sort } from 'fast-sort'
 import Search from './search.jsx'
 
 export default async function App( {searchParams} ) {
-  const prisma = new PrismaClient()
   const { sortOrder = '' } = await searchParams;
   const { search = '' } = await searchParams;
-  let notes = await prisma.note.findMany({
-    where: {
-      title: {
-        contains: search,
-      },
-    },
-  })
-  if (sortOrder === 'date') {
-    const sortedNotes = await prisma.note.findMany({
-      where: {
-        title: {
-          contains: search,
-        },
-      },
-      orderBy: {
-        date: 'desc',
-      },
-    });
-    notes = sortedNotes;
+  
+  const data = await fetch(`${process.env.NEXTAPP_URL}/api/notes`, {
+    method: 'GET',
+  });
+  let notes = await data.json();
+
+  if (search) {
+    notes = notes.filter(note => note.title.toLowerCase().includes(search.toLowerCase()) || note.content.toLowerCase().includes(search.toLowerCase()));
   }
-  else {
-    const sortedNotes = await prisma.note.findMany({
-      where: {
-        title: {
-          contains: search,
-        },
-      },
-      orderBy: {
-        title: 'desc',
-      },
-    })
-    notes = sortedNotes;
+  if (sortOrder === 'title') {
+    const snotes = sort(notes).desc(note => note.title);
+    notes = snotes;
+  } else {
+    const snotes = sort(notes).desc(note => note.date);
+    notes = snotes;
   }
+
   return (
     <>
       <div className='flex flex-col p-6 pt-16 md:p-36 md:pt-20'>
         <Link href='/' className='text-5xl text-black font-bold mb-6'>notNotes</Link>
-        <div className=''>
+        <div>
           <Search />
         </div>
         <table className='w-full'>
@@ -62,7 +44,7 @@ export default async function App( {searchParams} ) {
           </thead>
           <tbody>
               {notes.map((note) => (
-                <Card push={note.id} key={note.id} id={note.id} title={note.title} abstract={note.content.substring(0, 50) + "..."} date={note.date.toLocaleString()} />
+                <Card push={note.id} key={note.id} id={note.id} title={note.title} abstract={note.content.substring(0, 50) + "..."} date={new Date (note.date).toLocaleString("en-GB")} />
               ))}
           </tbody>
         </table>
