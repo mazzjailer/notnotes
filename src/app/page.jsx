@@ -2,7 +2,7 @@ import Card from './card'
 import Link from 'next/link'
 import './globals.css'
 import { sort } from 'fast-sort'
-import Search from './search.jsx'
+import Search from './components/search.jsx'
 
 export default async function App( {searchParams} ) {
   const { sortOrder = '' } = await searchParams;
@@ -28,7 +28,8 @@ export default async function App( {searchParams} ) {
     <>
       <div className='flex flex-col p-6 pt-16 md:p-36 md:pt-20'>
         <Link href='/' className='text-5xl text-black font-bold mb-6'>notNotes</Link>
-        <div>
+        <div className='flex flex-row items-center justify-center'>
+          { search && <Link href='/' className='text-black text-xl font-bold mb-7 mr-4' >&lt;&nbsp;Back</Link>}
           <Search />
         </div>
         <table className='w-full'>
