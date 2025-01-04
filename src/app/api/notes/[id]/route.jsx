@@ -24,3 +24,11 @@ export async function PUT( NextRequest, {params} ) {
   })
   return NextResponse.json(updatedNote);
 }
+
+export async function DELETE( NextRequest, {params} ) {
+  const { id } = await params;
+  const deletedNote = await prisma.note.delete({
+    where: { id: Number(id) }
+  })
+  return NextResponse.json(deletedNote);
+}

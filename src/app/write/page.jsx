@@ -28,7 +28,7 @@ async function page() {
   return (
     <>
       <Header />
-      <div className='p-6 md:pr-36 md:pl-36 '>
+      <div className='p-6 md:pt-8 md:pr-36 md:pl-36 '>
         <form action={addNote}>
           <div className='flex flex-row'>
             <TextArea name="title" placeholder='Title...' maxLength={160} rows='1' className='text-5xl text-black font-bold mb-6 resize-none w-full outline-none p-2 rounded-xl over' />
