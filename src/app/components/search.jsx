@@ -2,7 +2,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
+import { IoSearch } from "react-icons/io5";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -23,7 +23,7 @@ const Search = () => {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <button type='submit' className=' shadow-sm flex items-center justify-center bg-white text-black text-base rounded-xl h-5 p-[16px] text-center align-middle mr-2'><Image width={20} height={20} src='/search.png' alt='Search icon'/></button>
+      <button type='submit' className='shadow-sm flex items-center justify-center bg-white text-black text-base rounded-xl h-5 p-[16px] text-center align-middle mr-2'><IoSearch className='text-xl' /></button>
     </form>
   )
 }

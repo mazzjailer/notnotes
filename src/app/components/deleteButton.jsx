@@ -1,8 +1,8 @@
 'use client'
 import React from 'react'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { BiSolidTrashAlt } from "react-icons/bi";
 
 const DeleteButton = (props) => {
   const router = useRouter();
@@ -24,7 +24,7 @@ const DeleteButton = (props) => {
         </div>
       </div>}
       <button onClick={() => setIsDeleting(true)} className='p-3 hover:bg-gray-100 hover:rounded-2xl hover:shadow-inner flex flex-nowrap items-center justify-center text-center'>
-        <Image src='/delete.png' alt='Delete icon' width={24} height={24}/>
+        <BiSolidTrashAlt className='text-2xl text-red-500' />
         <h4 className='ml-[6px] text-2xl text-black font-bold '>Delete</h4>
       </button>
     </>

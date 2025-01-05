@@ -3,6 +3,8 @@ import Link from 'next/link'
 import './globals.css'
 import { sort } from 'fast-sort'
 import Search from './components/search.jsx'
+import { FaPen } from "react-icons/fa";
+import { IoIosArrowBack } from "react-icons/io";
 
 export default async function App( {searchParams} ) {
   const { sortOrder = '' } = await searchParams;
@@ -29,7 +31,7 @@ export default async function App( {searchParams} ) {
       <div className='flex flex-col p-6 pt-16 md:p-36 md:pt-20'>
         <Link href='/' className='text-5xl text-black font-bold mb-6'>notNotes</Link>
         <div className='flex flex-row items-center justify-center'>
-          { search && <Link href='/' className='text-black text-xl font-bold mb-7 mr-4' >&lt;&nbsp;Back</Link>}
+          { search && <Link href='/' className='text-black text-xl font-bold mb-7 mr-4 flex flex-nowrap justify-center items-center' ><IoIosArrowBack className='text-2xl' />Back</Link>}
           <Search />
         </div>
         <table className='w-full'>
@@ -50,7 +52,7 @@ export default async function App( {searchParams} ) {
           </tbody>
         </table>
       </div>
-      <Link href="/write" className='fixed rounded-full bottom-10 right-10 md:bottom-32 md:right-44 w-[60px] h-[60px] bg-black z-2 text-white hover:cursor-pointer flex justify-center items-center font-serif font-bold text-4xl leading-[60px] m-0'>+</Link>
+      <Link href="/write" className='fixed rounded-2xl bottom-10 right-10 md:bottom-32 md:right-44 w-[60px] h-[60px] bg-black z-2 text-white hover:cursor-pointer flex justify-center items-center text-xl'><FaPen /></Link>
     </>
   )
 }
