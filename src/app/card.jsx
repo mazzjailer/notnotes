@@ -8,7 +8,7 @@ const Card = (props) => {
   return (
     <tr onClick={() => router.push(`/notes/${props.push}`)} className='container w-full border-solid border-t border-b border-gray-200 hover:cursor-pointer hover:bg-gray-100 '>
       <td className='pr-6 pl-6 pt-2 pb-2'>
-        <h4 className='text-xl text-black font-semibold'>{props.title}</h4>
+        <h4 className='text-xl text-black font-medium'>{props.title}</h4>
         <p className='text-lg text-gray-800'>{props.abstract}</p>
       </td>
       <td className='pr-6 pl-6 pt-2 pb-2'>
