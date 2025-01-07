@@ -5,15 +5,15 @@ import { sort } from 'fast-sort'
 import Search from './components/search.jsx'
 import { FaPen } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
+import { PrismaClient } from '@prisma/client'
 
 export default async function App( {searchParams} ) {
   const { sortOrder = '' } = await searchParams;
   const { search = '' } = await searchParams;
   
-  const data = await fetch(`${process.env.NEXTAPP_URL}/api/notes`, {
-    method: 'GET',
-  });
-  let notes = await data.json();
+  const prisma = new PrismaClient();
+
+  let notes = await prisma.note.findMany();
 
   if (search) {
     notes = notes.filter(note => note.title.toLowerCase().includes(search.toLowerCase()) || note.content.toLowerCase().includes(search.toLowerCase()));

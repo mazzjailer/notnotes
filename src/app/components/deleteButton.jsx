@@ -3,16 +3,12 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { BiSolidTrashAlt } from "react-icons/bi";
+import { deleteFunction } from './deleteFunction.jsx'
 
 const DeleteButton = (props) => {
   const router = useRouter();
   const [isDeleting, setIsDeleting] = useState(false);
-  const Delete = () => {
-    fetch('/api/notes/' + props.id, {
-      method: 'DELETE',
-    });
-    router.push('/');
-  }
+  const id = props.id;
 
   return (
     <>
@@ -20,7 +16,10 @@ const DeleteButton = (props) => {
         <h2 className='text-black text-2xl text-center mb-8'>Are you sure you want to delete this note?</h2>
         <div className='flex flex-row justify-center items-center'>
           <button className='p-3 m-1 mb-0 text-lg font-medium bg-gray-800 text-white rounded-2xl shadow-inner' onClick={() => setIsDeleting(false)}>Cancel</button>
-          <button className='p-3 m-1 mb-0 text-lg font-medium bg-red-500 text-white rounded-2xl shadow-inner' onClick={Delete}>Delete</button>
+          <button className='p-3 m-1 mb-0 text-lg font-medium bg-red-500 text-white rounded-2xl shadow-inner' onClick={async () => {
+            await deleteFunction(id)
+            router.push('/');
+          }}>Delete</button>
         </div>
       </div>}
       <button onClick={() => setIsDeleting(true)} className='p-3 hover:bg-gray-100 hover:rounded-2xl hover:shadow-inner flex flex-nowrap items-center justify-center text-center'>

@@ -2,6 +2,7 @@ import React from 'react'
 import TextArea from '../components/textArea.jsx'
 import Header from '../components/header.jsx'
 import { redirect } from 'next/navigation'
+import { PrismaClient } from '@prisma/client'
 
 async function page() {
   async function addNote(formData) {
@@ -11,18 +12,16 @@ async function page() {
       title: formData.get('title'),
       content: formData.get('content'),
     }
+    const prisma = new PrismaClient();
 
-    const note = await fetch(process.env.NEXTAPP_URL + '/api/notes', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    const note = await prisma.note.create({
+      data: {
+        title: rawFormData.title,
+        content: rawFormData.content,
       },
-      body: JSON.stringify(rawFormData),
-    })
+    });
 
-    const { id } = await note.json();
-
-    redirect(`/notes/${id}`)
+    redirect(`/notes/${note.id}`);
   }
 
   return (

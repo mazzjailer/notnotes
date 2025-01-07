@@ -1,14 +1,15 @@
 import TextArea from '../../components/textArea.jsx';
 import Header from '../../components/header.jsx'
 import { revalidatePath } from 'next/cache';
+import { PrismaClient } from '@prisma/client';
 
 async function NotePage({ params }) {
   const { id } = await params;
+  const prisma = new PrismaClient();
 
-  const data = await fetch(`${process.env.NEXTAPP_URL}/api/notes/${id}`, {
-    method: 'GET',
+  const note = await prisma.note.findUnique({
+    where: { id: Number(id) },
   });
-  const note = await data.json();
 
   async function editNote(formData) {
     'use server'
@@ -16,13 +17,15 @@ async function NotePage({ params }) {
       title: formData.get('title'),
       content: formData.get('content'),
     }
+    const prisma = new PrismaClient();
 
-    const updatedNote = await fetch(`${process.env.NEXTAPP_URL}/api/notes/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
+    await prisma.note.update({
+      where: { id: Number(id) } ,
+      data: {
+        title: rawFormData.title,
+        content: rawFormData.content,
+        date: new Date,
       },
-      body: JSON.stringify(rawFormData),
     }).then(() => {revalidatePath(`/note/${id}`);})
   }
 
@@ -42,5 +45,7 @@ async function NotePage({ params }) {
     </>
   )
 }
+
+export const dynamic = 'force-dynamic'
 
 export default NotePage
