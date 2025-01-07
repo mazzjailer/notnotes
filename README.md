@@ -1,7 +1,8 @@
-# notnotes
+# notNotes
 <img src="https://github.com/mazzjailer/notnotes/blob/main/src/app/icon.png" title="Logo" width="130" /></a>
 
 ### Just a simple and minimal designed notes app.
+made with Next.js, Tailwind CSS, MySQL and Prisma ORM.
 <br />
 
 ## Demo:
