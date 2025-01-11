@@ -47,7 +47,7 @@ export default async function App( {searchParams} ) {
             </thead>
             <tbody>
                 {notes.map((note) => (
-                  <Card push={note.id} key={note.id} id={note.id} title={note.title} abstract={note.content.substring(0, 50) + "..."} date={new Date (note.date).toLocaleString("en-GB")} />
+                  <Card push={note.id} key={note.id} id={note.id} title={note.title} abstract={note.content.substring(0, 50) + "..."} date={note.date} />
                 ))}
             </tbody>
           </table>

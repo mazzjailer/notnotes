@@ -12,7 +12,7 @@ const Card = (props) => {
         <p className='text-lg text-gray-800'>{props.abstract}</p>
       </td>
       <td className='pr-6 pl-6 pt-2 pb-2'>
-        <h4>📅&nbsp;{props.date}</h4>
+        <h4>📅&nbsp;{new Date (props.date).toLocaleString("en-GB")}</h4>
       </td>
     </tr>
   )

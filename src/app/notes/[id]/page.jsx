@@ -2,6 +2,7 @@ import TextArea from '../../components/textArea.jsx';
 import Header from '../../components/header.jsx'
 import { revalidatePath } from 'next/cache';
 import { PrismaClient } from '@prisma/client';
+import DateConverter from './dateConverter.jsx';
 
 async function NotePage({ params }) {
   const { id } = await params;
@@ -38,7 +39,7 @@ async function NotePage({ params }) {
             <TextArea name="title" placeholder='Title...' maxLength={160} rows='1' className='text-5xl text-black font-medium mb-6 resize-none w-full outline-none p-2 rounded-xl over' value={note.title} />
             <button className='bg-black text-white font-medium p-2 pr-4 pl-4 rounded-xl h-fit' type='submit'>Save</button>
           </div>
-          <p className='p-2 pt-0 text-gray-500'>Last updated: {new Date (note.date).toLocaleString("en-GB")}</p>
+          <DateConverter date={note.date} />
           <TextArea name="content" placeholder='Start writing...' className='text-2xl text-gray-900 resize-none w-full outline-none p-2 rounded-xl' value={note.content} />
         </form>
       </div>
