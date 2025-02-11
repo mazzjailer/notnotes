@@ -1,42 +1,42 @@
-import React from 'react'
-import TextArea from '../components/textArea.jsx'
-import Header from '../components/header.jsx'
-import { redirect } from 'next/navigation'
-import { PrismaClient } from '@prisma/client'
+'use client'
+import React, { useState } from 'react'
+import TextArea from '../../components/textArea.jsx'
+import { useRouter } from 'next/navigation'
+import { FiLoader } from "react-icons/fi"
 
-async function page() {
+function page() {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
   async function addNote(formData) {
-    'use server'
+    setLoading(true);
 
     const rawFormData = {
       title: formData.get('title'),
       content: formData.get('content'),
     }
-    const prisma = new PrismaClient();
 
-    const note = await prisma.note.create({
-      data: {
+    const response = await fetch('/api/notes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
         title: rawFormData.title,
         content: rawFormData.content,
-      },
-    });
+      })
+    })
+    const note = await response.json();
 
-    redirect(`/notes/${note.id}`);
+    router.push(`/notes/${note.id}`);
   }
 
   return (
-    <>
-      <Header />
-      <div className='p-6 md:pt-8 md:pr-36 md:pl-36 '>
-        <form action={addNote}>
-          <div className='flex flex-row'>
-            <TextArea name="title" placeholder='Title...' maxLength={160} rows='1' className='text-5xl text-black font-medium mb-6 resize-none w-full outline-none p-2 rounded-xl over' />
-            <button className='bg-black text-white font-medium p-2 pr-4 pl-4 rounded-xl h-fit' type='submit'>Save</button>
-          </div>
-          <TextArea name="content" placeholder='Start writing...' className='text-2xl text-gray-900 resize-none w-full outline-none p-2 rounded-xl' />
-        </form>
+    <form action={addNote}>
+      <div className='flex flex-row'>
+        <TextArea name="title" placeholder='Title...' maxLength={160} rows='1' className='text-5xl text-black font-medium mb-6 resize-none w-full outline-none p-2 rounded-xl over' />
+        <button className='bg-black text-white font-medium p-2 pr-4 pl-4 rounded-xl h-fit' type='submit' disabled={loading}>{loading ? ( <FiLoader className="animate-spin" /> ) : ("Save") }</button>
       </div>
-    </>
+      <TextArea name="content" placeholder='Start writing...' className='text-2xl text-gray-900 resize-none w-full outline-none p-2 rounded-xl' />
+    </form>
   )
 }
 

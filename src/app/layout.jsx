@@ -1,7 +1,9 @@
-import { Roboto } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import Session from "@/contexts/session";
+import Header from "@/components/header"
 
-const roboto = Roboto({
+const roboto = Inter({
   weight: ["400", "500", "700"],
   subsets: ["latin"],
   display: "swap",
@@ -25,7 +27,12 @@ export default function RootLayout({ children }) {
       <body
         className={roboto.className}
       >
-        {children}
+        <Session>
+          <Header />
+          <div className="p-6 py-28 md:p-36 md:py-28">
+            {children}
+          </div>
+        </Session>
       </body>
     </html>
   );
