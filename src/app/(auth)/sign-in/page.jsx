@@ -96,12 +96,12 @@ export default function SignIn() {
               <Label htmlFor="remember" className="text-gray-700 font-medium">Remember me</Label>
             </div>
             <Toaster toastOptions={{
-              className: 'bg-black text-white',
+              className: 'bg-neutral-800 text-white',
             }} 
             />
             <Button
+              className="bg-neutral-800 text-white hover:bg-neutral-700 w-full shadow"
               type="submit"
-              className="w-full"
               disabled={loading}
               onClick={handleSubmit}
             >

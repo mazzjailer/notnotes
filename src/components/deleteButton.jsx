@@ -27,11 +27,11 @@ const DeleteButton = () => {
 
   return (
     <div className={`${isNotePage ? 'flex' : 'hidden'}`}>
-      { isDeleting && <div className='flex flex-col bg-gray-200 shadow-inner p-9 rounded-2xl items-center justify-center z-5 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+      { isDeleting && <div className='flex flex-col bg-gray-100 shadow border p-5 md:p-9 rounded-2xl items-center justify-center z-5 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 md:w-1/3'>
         <h2 className='text-black text-2xl text-center mb-8'>Are you sure you want to delete this note?</h2>
         <div className='flex flex-row justify-center items-center'>
-          <button className='p-3 m-1 mb-0 text-lg font-medium bg-gray-800 text-white rounded-2xl shadow-inner' onClick={() => setIsDeleting(false)}>Cancel</button>
-          <button className='p-3 m-1 mb-0 text-lg font-medium bg-red-500 text-white rounded-2xl shadow-inner' disabled={finalDelete} onClick={async () => {
+          <button className='p-3 m-1 mb-0 text-lg font-medium bg-gray-800 text-white rounded-2xl shadow' onClick={() => setIsDeleting(false)}>Cancel</button>
+          <button className='p-3 m-1 mb-0 text-lg font-medium bg-red-500 text-white rounded-2xl shadow' disabled={finalDelete} onClick={async () => {
             setFinalDelete(true)
             await deleteFunction(noteId)
             router.push('/');

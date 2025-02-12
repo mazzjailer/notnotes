@@ -33,7 +33,7 @@ async function NotePage({ params }) {
     <form action={editNote}>
       <div className='flex flex-row'>
         <TextArea name="title" placeholder='Title...' maxLength={160} rows='1' className='text-5xl text-black font-medium mb-6 resize-none w-full outline-none p-2 rounded-xl over' value={note.title} />
-        <button className='bg-black text-white font-medium p-2 pr-4 pl-4 rounded-xl h-fit' type='submit'>Save</button>
+        <button className='bg-neutral-800 shadow text-white font-medium p-2 pr-4 pl-4 rounded-xl h-fit' type='submit'>Save</button>
       </div>
       <DateConverter date={note.date} />
       <TextArea name="content" placeholder='Start writing...' className='text-2xl text-gray-900 resize-none w-full outline-none p-2 rounded-xl' value={note.content} />

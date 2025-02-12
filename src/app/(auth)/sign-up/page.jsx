@@ -140,8 +140,8 @@ export default function SignUp() {
             }} 
             />
 						<Button
+							className="bg-neutral-800 text-white hover:bg-neutral-700 w-full shadow rounded-xl"
 							type="submit"
-							className="w-full"
 							disabled={loading}
 							onClick={async () => {
 								handleSignUp();

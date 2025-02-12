@@ -33,7 +33,7 @@ function page() {
     <form action={addNote}>
       <div className='flex flex-row'>
         <TextArea name="title" placeholder='Title...' maxLength={160} rows='1' className='text-5xl text-black font-medium mb-6 resize-none w-full outline-none p-2 rounded-xl over' />
-        <button className='bg-black text-white font-medium p-2 pr-4 pl-4 rounded-xl h-fit' type='submit' disabled={loading}>{loading ? ( <FiLoader className="animate-spin" /> ) : ("Save") }</button>
+        <button className='bg-neutral-800 shadow text-white font-medium p-2 pr-4 pl-4 rounded-xl h-fit' type='submit' disabled={loading}>{loading ? ( <FiLoader className="animate-spin" /> ) : ("Save") }</button>
       </div>
       <TextArea name="content" placeholder='Start writing...' className='text-2xl text-gray-900 resize-none w-full outline-none p-2 rounded-xl' />
     </form>
