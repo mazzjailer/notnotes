@@ -18,6 +18,10 @@ model Note {
   title   String
   content String
   date    DateTime @default(now())
+  userId  String
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("note")
 }
 
 model User {
@@ -30,6 +34,7 @@ model User {
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
+  notes         Note[]
 
   @@unique([email])
   @@map("user")
