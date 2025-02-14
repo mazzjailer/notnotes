@@ -3,10 +3,15 @@ import React, { useState } from 'react'
 import TextArea from '../../components/textArea.jsx'
 import { useRouter } from 'next/navigation'
 import { FiLoader } from "react-icons/fi"
+import { useSession } from '@/contexts/sessionContext.jsx'
 
 function page() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { session } = useSession();
+  if (!session) {
+    router.push('/sign-in');
+  }
 
   async function addNote(formData) {
     setLoading(true);
@@ -22,6 +27,7 @@ function page() {
       body: JSON.stringify({
         title: rawFormData.title,
         content: rawFormData.content,
+        userId: session.user.id,
       })
     })
     const note = await response.json();

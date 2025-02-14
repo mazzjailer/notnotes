@@ -3,12 +3,14 @@ import React from 'react'
 import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { IoSearch } from "react-icons/io5";
+import { usePathname } from 'next/navigation';
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const searchRef = useRef(null);
+  const path = usePathname();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -24,13 +26,13 @@ const Search = () => {
   const onSearch = (e) => {
     e.preventDefault();
     const encodeSearchQuery = encodeURI(searchQuery);
-    router.push(`/?search=${encodeSearchQuery}`);
+    router.push(`/notes?search=${encodeSearchQuery}`);
     setIsOpen(false);
   }
 
   return (
     <>
-      <div className='cursor-pointer' onClick={() => setIsOpen(true)}>
+      <div className={`cursor-pointer ${path === '/notes' ? 'block' : 'hidden'}`} onClick={() => setIsOpen(true)}>
         <div className='shadow border border-gray-100 flex items-center justify-center bg-gray-50 text-black text-base rounded-xl h-5 p-[16px] text-center align-middle mr-2'><IoSearch className='text-xl' /></div>
         </div>
       { isOpen && <div className='fixed inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm z-50'>

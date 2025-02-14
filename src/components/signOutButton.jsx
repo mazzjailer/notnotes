@@ -11,7 +11,7 @@ const SignOutButton = ({styles}) => {
   const router = useRouter();
 
   return (
-    <form className={`${path  === '/' ? 'block' : 'hidden'}`} action={async () => {
+    <form className={`${path  === '/notes' ? 'block' : 'hidden'}`} action={async () => {
       await authClient.signOut({
         fetchOptions: {
           onSuccess: () => {

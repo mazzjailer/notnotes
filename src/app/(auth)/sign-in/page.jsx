@@ -22,7 +22,7 @@ export default function SignIn() {
     await signIn.email({
     email,
     password,
-    callbackURL: "/",
+    callbackURL: "/notes",
     rememberMe: rememberMe,
     fetchOptions: {
       onResponse: () => {
@@ -124,7 +124,7 @@ export default function SignIn() {
           <CardTitle className="text-xl">
             You are already logged in!
           </CardTitle>
-          <Link href='/' className="text-blue-500 hover:underline text-md">Go to home page &gt;</Link>
+          <Link href='/notes' className="text-blue-500 hover:underline text-md">Go to your notes page &gt;</Link>
         </CardHeader>
       </Card>)}
     </div>

@@ -34,7 +34,7 @@ export default function SignUp() {
 			email,
 			password,
 			name: `${firstName} ${lastName}`,
-			callbackURL: "/",
+			callbackURL: "/notes",
 			fetchOptions: {
 				onResponse: () => {
 					setLoading(false);
@@ -46,7 +46,7 @@ export default function SignUp() {
 					toast(ctx.error.message);
 				},
 				onSuccess: () => {
-					router.push('/');
+					router.push('/notes');
 					router.refresh();
 				}
 			},
@@ -166,7 +166,7 @@ export default function SignUp() {
           <CardTitle className="text-xl">
             You are already logged in!
           </CardTitle>
-          <Link href='/' className="text-blue-500 hover:underline text-md">Go to home page &gt;</Link>
+          <Link href='/notes' className="text-blue-500 hover:underline text-md">Go to your notes page &gt;</Link>
         </CardHeader>
       </Card>)}
 		</div>

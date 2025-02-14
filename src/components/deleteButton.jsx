@@ -34,7 +34,7 @@ const DeleteButton = () => {
           <button className='p-3 m-1 mb-0 text-lg font-medium bg-red-500 text-white rounded-2xl shadow' disabled={finalDelete} onClick={async () => {
             setFinalDelete(true)
             await deleteFunction(noteId)
-            router.push('/');
+            router.push('/notes');
             setFinalDelete(false);
             setIsDeleting(false);
           }}>{finalDelete ? ( <FiLoader className="animate-spin" /> ) : ("Delete")}</button>
