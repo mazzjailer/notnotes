@@ -41,8 +41,8 @@ const DeleteButton = () => {
         </div>
       </div>}
       <button onClick={() => setIsDeleting(true)} disabled={isDeleting} className='p-3 border border-transparent hover:bg-gray-50 hover:rounded-2xl hover:shadow hover:border-gray-100 flex flex-nowrap items-center justify-center text-center'>
-        <BiSolidTrashAlt className='text-2xl text-red-500' />
-        <h4 className='ml-[6px] text-2xl text-black '>Delete</h4>
+        <BiSolidTrashAlt className='text-xl text-red-500' />
+        <h4 className='ml-[6px] text-xl text-black '>Delete</h4>
       </button>
     </div>
   )
