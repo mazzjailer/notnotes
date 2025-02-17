@@ -73,7 +73,7 @@ export default function SignUp() {
 							<div className="grid gap-2">
 								<Label htmlFor="first-name">First name</Label>
 								<Input
-									className='bg-white'
+									className='bg-white text-black'
 									id="first-name"
 									placeholder="Max"
 									required
@@ -86,7 +86,7 @@ export default function SignUp() {
 							<div className="grid gap-2">
 								<Label htmlFor="last-name">Last name</Label>
 								<Input
-									className='bg-white'
+									className='bg-white text-black'
 									id="last-name"
 									placeholder="Robinson"
 									required
@@ -100,7 +100,7 @@ export default function SignUp() {
 						<div className="grid gap-2">
 							<Label htmlFor="email">Email</Label>
 							<Input
-								className='bg-white'
+								className='bg-white text-black'
 								id="email"
 								type="email"
 								placeholder="m@example.com"
@@ -114,7 +114,7 @@ export default function SignUp() {
 						<div className="grid gap-2">
 							<Label htmlFor="password">Password</Label>
 							<Input
-								className='bg-white'
+								className='bg-white text-black'
 								id="password"
 								type="password"
 								value={password}
@@ -126,7 +126,7 @@ export default function SignUp() {
 						<div className="grid gap-2">
 							<Label htmlFor="password">Confirm Password</Label>
 							<Input
-								className='bg-white'
+								className='bg-white text-black'
 								id="password_confirmation"
 								type="password"
 								value={passwordConfirmation}

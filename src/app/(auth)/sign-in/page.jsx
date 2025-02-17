@@ -59,7 +59,7 @@ export default function SignIn() {
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
-                className="bg-white"
+                className="bg-white text-black"
                 id="email"
                 type="email"
                 placeholder="m@example.com"
@@ -75,7 +75,7 @@ export default function SignIn() {
                 <Label htmlFor="password">Password</Label>
               </div>
               <Input
-                className="bg-white"
+                className="bg-white text-black"
                 id="password"
                 type="password"
                 placeholder="Password"
