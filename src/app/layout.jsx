@@ -25,7 +25,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={roboto.className}
+        className={roboto.className + " bg-white dark:bg-black flex flex-col min-h-[100vh]"}
       >
         <Session>
           <Header />

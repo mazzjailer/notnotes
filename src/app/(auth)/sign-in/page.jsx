@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { signIn } from "@/lib/auth-client";
 import Link from "next/link";
@@ -42,10 +42,10 @@ export default function SignIn() {
 
   return (
     <div className="flex justify-center items-center h-[65vh]">
-      {!session ? (<Card className="md:max-w-md max-w-sm rounded-3xl bg-gray-100">
+      {!session ? (<Card className="md:max-w-md max-w-sm rounded-3xl bg-neutral-100 dark:bg-neutral-800">
         <CardHeader>
-          <CardTitle className="text-lg md:text-xl">Sign In</CardTitle>
-          <CardDescription className="text-xs md:text-sm text-gray-700">
+          <CardTitle className="text-lg md:text-xl text-black dark:text-white">Sign In</CardTitle>
+          <CardDescription className="text-xs md:text-sm">
             Enter your email below to login to your account
           </CardDescription>
         </CardHeader>
@@ -93,14 +93,14 @@ export default function SignIn() {
                   setRememberMe(!rememberMe);
                 }}
               />
-              <Label htmlFor="remember" className="text-gray-700 font-medium">Remember me</Label>
+              <Label htmlFor="remember" className="text-neutral-700 dark:text-neutral-200 font-medium">Remember me</Label>
             </div>
             <Toaster toastOptions={{
-              className: 'bg-neutral-800 text-white',
+              className: 'bg-neutral-800 dark:bg-neutral:100 text-white',
             }} 
             />
             <Button
-              className="bg-neutral-800 text-white hover:bg-neutral-700 w-full shadow"
+              className="bg-neutral-800 dark:bg-neutral-100 text-white dark:text-black hover:bg-neutral-700 dark:hover:bg-neutral-200 w-full shadow"
               type="submit"
               disabled={loading}
               onClick={handleSubmit}
@@ -114,14 +114,14 @@ export default function SignIn() {
           </form>
         </CardContent>
         <CardFooter>
-            <div className="flex justify-center w-full border-t border-gray-100 py-4">
-              <p className="text-gray-700">Don&apos;t have an account?</p>
+            <div className="flex justify-center w-full border-t border-neutral-700 py-4">
+              <CardDescription className="text-md">Don&apos;t have an account?</CardDescription>
               <Link href="/sign-up" className="ml-2 text-blue-500">Sign up</Link>
             </div>
           </CardFooter>
-      </Card>) : (<Card className="bg-gray-100">
+      </Card>) : (<Card className="bg-neutral-100 dark:bg-neutral-800">
         <CardHeader>
-          <CardTitle className="text-xl">
+          <CardTitle className="text-xl text-black dark:text-white">
             You are already logged in!
           </CardTitle>
           <Link href='/notes' className="text-blue-500 hover:underline text-md">Go to your notes page &gt;</Link>

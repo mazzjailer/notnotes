@@ -55,10 +55,10 @@ export default function SignUp() {
 
 	return (
 		<div className="flex justify-center items-center h-[65vh]">
-			{!session ? (<Card className="rounded-3xl md:max-w-md max-w-sm bg-gray-100">
+			{!session ? (<Card className="rounded-3xl md:max-w-md max-w-sm bg-neutral-100 dark:bg-neutral-800">
 				<CardHeader>
 					<CardTitle className="text-lg md:text-xl">Sign Up</CardTitle>
-					<CardDescription className="text-xs md:text-sm text-gray-700">
+					<CardDescription className="text-xs md:text-sm">
 						Enter your information to create an account
 					</CardDescription>
 				</CardHeader>
@@ -140,7 +140,7 @@ export default function SignUp() {
             }} 
             />
 						<Button
-							className="bg-neutral-800 text-white hover:bg-neutral-700 w-full shadow rounded-xl"
+							className="bg-neutral-800 dark:bg-neutral-100 text-white dark:text-black hover:bg-neutral-700 w-full shadow rounded-xl"
 							type="submit"
 							disabled={loading}
 							onClick={async () => {
@@ -156,12 +156,12 @@ export default function SignUp() {
 					</form>
 				</CardContent>
 				<CardFooter>
-					<div className="flex justify-center w-full border-t border-gray-400 py-4">
-						<p className="text-gray-700">Already have an account?</p>
+					<div className="flex justify-center items-center w-full border-t border-neutral-700 py-4">
+						<CardDescription className="text-md">Already have an account?</CardDescription>
 						<Link href="/sign-in" className="ml-2 text-blue-500">Sign in</Link>
           </div>
 				</CardFooter>
-			</Card>) : (<Card className="bg-gray-100">
+			</Card>) : (<Card className="bg-neutral-100">
         <CardHeader>
           <CardTitle className="text-xl">
             You are already logged in!

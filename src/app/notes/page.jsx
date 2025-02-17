@@ -42,7 +42,7 @@ export default async function App( {searchParams} ) {
         <div className='flex flex-row items-center justify-center'>
         </div>
           <table className='w-full'>
-            <thead className='text-left text-gray-600 text-lg'>
+            <thead className='text-left text-neutral-600 dark:text-neutral-300 text-lg'>
               <tr>
                 <th>
                   <Link className='p-5' href={"/notes?search=" + search + "&sortOrder=title"}>Title</Link>
@@ -59,7 +59,7 @@ export default async function App( {searchParams} ) {
             </tbody>
           </table>
       </div>
-      <Link href="/write" className='fixed rounded-2xl bottom-10 right-10 md:bottom-32 md:right-44 w-[60px] h-[60px] bg-black z-2 text-white hover:cursor-pointer flex justify-center items-center text-xl'><FaPen /></Link>
+      <Link href="/write" className='fixed rounded-2xl bottom-10 right-10 md:bottom-32 md:right-44 w-[60px] h-[60px] bg-black dark:bg-white z-2 text-white dark:text-black hover:cursor-pointer flex justify-center items-center text-xl'><FaPen /></Link>
     </div>
   )
 }

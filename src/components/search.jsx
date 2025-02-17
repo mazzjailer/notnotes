@@ -33,10 +33,10 @@ const Search = () => {
   return (
     <>
       <div className={`cursor-pointer ${path === '/notes' ? 'block' : 'hidden'}`} onClick={() => setIsOpen(true)}>
-        <div className='shadow border border-gray-100 flex items-center justify-center bg-gray-50 text-black text-base rounded-xl h-5 p-[16px] text-center align-middle mr-2'><IoSearch className='text-xl' /></div>
+        <div className='shadow flex items-center justify-center bg-neutral-50 text-black text-base rounded-xl h-5 p-[16px] text-center align-middle mr-2 dark:shadow-neutral-700'><IoSearch className='text-xl' /></div>
         </div>
       { isOpen && <div className='fixed inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm z-50'>
-        <form className='flex flex-row items-center shadow-inner bg-white rounded-xl mb-7 w-4/5 md:w-1/2' onSubmit={onSearch} ref={searchRef}>
+        <form className='flex flex-row items-center shadow-inner bg-white text-black rounded-xl mb-7 w-4/5 md:w-1/2' onSubmit={onSearch} ref={searchRef}>
           <input
             type='text'
             placeholder="Search"
@@ -45,7 +45,7 @@ const Search = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <button type='submit' className='shadow border flex items-center justify-center bg-gray-100 text-black text-base rounded-xl h-5 p-[16px] text-center align-middle mr-2 border-gray-200'><IoSearch className='text-xl' /></button>
+          <button type='submit' className='shadow flex items-center justify-center bg-black text-white text-base rounded-xl h-5 p-[16px] text-center align-middle mr-2'><IoSearch className='text-xl' /></button>
         </form>
       </div> }
     </>
