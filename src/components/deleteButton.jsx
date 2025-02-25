@@ -27,7 +27,7 @@ const DeleteButton = () => {
 
   return (
     <div className={`${isNotePage ? 'flex' : 'hidden'}`}>
-      { isDeleting && <div className='flex flex-col bg-neutral-100 shadow border p-5 md:p-9 rounded-2xl items-center justify-center z-5 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 md:w-1/3 dark:bg-neutral-900 dark:shadow-neutral-700'>
+      { isDeleting && <div className='flex flex-col bg-neutral-100 shadow border p-5 md:p-9 rounded-2xl items-center justify-center z-5 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 md:w-1/3 dark:bg-neutral-900 dark:shadow-neutral-700 text-wrap'>
         <h2 className='text-black dark:text-white text-2xl text-center mb-8'>Are you sure you want to delete this note?</h2>
         <div className='flex flex-row justify-center items-center'>
           <button className='p-3 m-1 mb-0 text-lg font-medium bg-neutral-800 text-white rounded-2xl shadow dark:bg-white dark:text-black dark:shadow-neutral-700' onClick={() => setIsDeleting(false)}>Cancel</button>
