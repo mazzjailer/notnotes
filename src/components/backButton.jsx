@@ -10,6 +10,7 @@ export default function BackButton() {
 
   const handleBack = () => {
     router.push('/notes');
+    router.refresh();
   };
   return (
     <button 
