@@ -8,6 +8,7 @@ import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import React from 'react';
+import Search from '@/components/search';
 
 export default async function App( {searchParams} ) {
   const { sortOrder = '' } = await searchParams;
@@ -54,6 +55,7 @@ export default async function App( {searchParams} ) {
 
   return (
     <div>
+      <Search/>
       <div className='flex flex-col'>
         <Table className="border-separate border-spacing-y-2">
           <TableBody className='*:border-0 space-y-2'>
